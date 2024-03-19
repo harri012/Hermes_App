@@ -41,7 +41,8 @@
                 android:padding="8dp"
                 android:hint="Type Name"
                 android:drawableLeft="@drawable/ic_baseline_drive_file_rename_outline_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/signup_email"
@@ -52,7 +53,8 @@
                 android:padding="8dp"
                 android:hint="Type Email"
                 android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/signup_password"
@@ -64,7 +66,8 @@
                 android:hint="Type Password"
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:singleLine="true"/>
 
             <Button
                 android:id="@+id/signup_button"
