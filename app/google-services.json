@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "822460787281",
+    "project_id": "hermes-490",
+    "storage_bucket": "hermes-490.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822460787281:android:360b37f6700084b3e52670",
+        "android_client_info": {
+          "package_name": "com.example.hermes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCABzC_0hHhGSS_rEUBM0V9nHgX27TVVGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822460787281:android:c1cdabea408b1949e52670",
+        "android_client_info": {
+          "package_name": "com.example.smartwalkingstick_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCABzC_0hHhGSS_rEUBM0V9nHgX27TVVGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
