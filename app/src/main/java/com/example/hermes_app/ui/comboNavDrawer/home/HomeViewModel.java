@@ -1,16 +1,16 @@
-package com.example.hermes_app.ui.locate;
+package com.example.hermes_app.ui.comboNavDrawer.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class LocateViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public LocateViewModel() {
+    public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is locate fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

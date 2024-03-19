@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.call;
+package com.example.hermes_app.ui.comboNavDrawer.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hermes_app.databinding.FragmentCallBinding;
+import com.example.hermes_app.databinding.FragmentSettingsBinding;
 
-public class CallFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
-    private FragmentCallBinding binding;
+    private FragmentSettingsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CallViewModel callViewModel =
-                new ViewModelProvider(this).get(CallViewModel.class);
+        SettingsViewModel settingsViewModel =
+                new ViewModelProvider(this).get(SettingsViewModel.class);
 
-        binding = FragmentCallBinding.inflate(inflater, container, false);
+        binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textCall;
-        callViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textSettings;
+        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

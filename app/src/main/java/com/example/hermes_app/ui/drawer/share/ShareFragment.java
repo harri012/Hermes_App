@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.locate;
+package com.example.hermes_app.ui.drawer.share;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hermes_app.databinding.FragmentLocateBinding;
+import com.example.hermes_app.databinding.FragmentHomeBinding;
 
-public class LocateFragment extends Fragment {
+public class ShareFragment extends Fragment {
 
-    private FragmentLocateBinding binding;
+    private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LocateViewModel locateViewModel =
-                new ViewModelProvider(this).get(LocateViewModel.class);
+        ShareViewModel shareViewModel =
+                new ViewModelProvider(this).get(ShareViewModel.class);
 
-        binding = FragmentLocateBinding.inflate(inflater, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textLocate;
-        locateViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textHome;
+        shareViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

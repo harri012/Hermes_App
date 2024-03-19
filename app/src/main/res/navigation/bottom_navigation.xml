@@ -2,30 +2,48 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/bottom_navigation"
+    tools:showIn="@layout/app_bar_main"
     app:startDestination="@+id/navigation_home">
 
-    <fragment
+
+<fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.hermes_app.ui.home.HomeFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_call"
-        android:name="com.example.hermes_app.ui.call.CallFragment"
+        android:name="com.example.hermes_app.ui.bottomNav.call.CallFragment"
         android:label="@string/title_call"
         tools:layout="@layout/fragment_call" />
 
     <fragment
         android:id="@+id/navigation_locate"
-        android:name="com.example.hermes_app.ui.locate.LocateFragment"
+        android:name="com.example.hermes_app.ui.bottomNav.locate.LocateFragment"
         android:label="@string/title_locate"
         tools:layout="@layout/fragment_locate" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.hermes_app.ui.settings.SettingsFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
+
+    <fragment
+        android:id="@+id/drawer_share"
+        android:name="com.example.hermes_app.ui.drawer.share.ShareFragment"
+        android:label="Share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/drawer_info"
+        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:label="Information"
+        tools:layout="@layout/fragment_information" />
+
+
+
 </navigation>

@@ -1,16 +1,16 @@
-package com.example.hermes_app.ui.settings;
+package com.example.hermes_app.ui.bottomNav.locate;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SettingsViewModel extends ViewModel {
+public class LocateViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SettingsViewModel() {
+    public LocateViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is settings fragment");
+        mText.setValue("This is locate fragment");
     }
 
     public LiveData<String> getText() {

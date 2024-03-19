@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_navigation">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+
+
+    <fragment
+        android:id="@+id/drawer_share"
+        android:name="com.example.hermes_app.ui.drawer.share.ShareFragment"
+        android:label="Share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/drawer_info"
+        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:label="Information"
+        tools:layout="@layout/fragment_information" />
+
+
+</navigation>
