@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = findViewById(R.id.nav_view);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-
         bottomNavigationView.setBackground(null);
 
         // Passing each menu ID as a set of Ids because each

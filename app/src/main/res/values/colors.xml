@@ -7,4 +7,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Protanopia colors -->
+    <color name="pro_yellow">#e8f086</color>
+    <color name="pro_green">#6fde6e</color>
+    <color name="pro_red">#ff4242</color>
+    <color name="pro_purple">#a691ae</color>
+    <color name="pro_blue">	#235fa4</color>
+
+    <!-- Deuteranopia colors -->
+    <color name="deu_beige">#e1daae</color>
+    <color name="deu_orange">#ff934f</color>
+    <color name="deu_red">#cc2d35</color>
+    <color name="deu_blue">#058ed9</color>
+    <color name="deu_black">#2d3142</color>
+
+    <!-- Tritanopia colors -->
+    <color name="tri_red">#dd4444</color>
+    <color name="tri_pink">#f48080</color>
+    <color name="tri_beige">#ffdcdc</color>
+    <color name="tri_green">#2d676f</color>
+    <color name="tri_green_dark">#194b4f</color>
+
+
 </resources>

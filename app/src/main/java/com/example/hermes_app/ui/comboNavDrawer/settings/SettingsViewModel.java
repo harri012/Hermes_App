@@ -1,14 +1,20 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
+import android.content.Context;
+import android.content.Intent;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.hermes_app.ui.bottomNav.locate.LocateCurrent;
+
 import java.util.List;
 import java.util.Arrays;
 
 public class SettingsViewModel extends ViewModel {
-    private MutableLiveData<String> textLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> uid = new MutableLiveData<>();
     private MutableLiveData<List<String>> colorPaletteLiveData = new MutableLiveData<>();
     private MediatorLiveData<String> combinedLiveData = new MediatorLiveData<>();
 
@@ -16,16 +22,21 @@ public class SettingsViewModel extends ViewModel {
     public SettingsViewModel() {
 
 
-        textLiveData.setValue("Color Palettes");
-        List<String> colorPaletteNames = Arrays.asList("normal", "protanopia", "deuteranopia", "tritanopia");
-        colorPaletteLiveData.setValue(colorPaletteNames);
+    }
+
+    public void save(Context context){
+        Intent intent = new Intent(context, LocateCurrent.class);
+        context.startActivity(intent);
+    }
 
 
-
+    public void remove(Context context){
+        Intent intent = new Intent(context, LocateCurrent.class);
+        context.startActivity(intent);
     }
 
     public LiveData<String> getText() {
-        return textLiveData;
+        return uid;
     }
 
     public LiveData<List<String>> getColorPaletteLiveData() {
