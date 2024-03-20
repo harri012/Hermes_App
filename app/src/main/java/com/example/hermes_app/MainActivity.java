@@ -1,8 +1,14 @@
 package com.example.hermes_app;
 
-import android.os.Bundle;
-import android.view.Menu;
+import static android.content.ContentValues.TAG;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,12 +18,21 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes_app.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
+    private FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        //code the floating action button
+        // Initialize Firebase Database
+        db = FirebaseFirestore.getInstance();
+        
+        FloatingActionButton pingButton = findViewById(R.id.fab_ping);
+
+        pingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateFlag(true);
+            }
+        });
+
     }
 
     @Override
@@ -58,6 +87,38 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    // Method to update boolean flag in Firebase Database
+    private void updateFlag(boolean value) {
+        // Construct the document reference
+        DocumentReference docRef = db.collection("devices")
+                .document("000000000000000000000000");
+
+        // Update the boolean flag
+        docRef.update("ping", value)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        boolean flag = true; // Set the flag to true
+                        Log.d(TAG, "Boolean flag updated successfully!");
+
+                        // Revert the flag back to false after 30 seconds
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateFlag(false); // Pass the boolean value you want to update after the delay
+                            }
+                        }, 30000); // 30 seconds delay (in milliseconds)
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Error updating boolean flag: " + e.getMessage());
+                    }
+                });
     }
 }
 
