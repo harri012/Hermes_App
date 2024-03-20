@@ -28,6 +28,7 @@ public class CallFragment extends Fragment {
 
     private EditText phoneNumber;
     private FloatingActionButton callButton;
+    private FloatingActionButton sosButton;
     static int PERMISSION_CODE=100;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,6 +45,7 @@ public class CallFragment extends Fragment {
         //call function direct
         phoneNumber = root.findViewById(R.id.editTextPhone_number);
         callButton = root.findViewById(R.id.floatingActionButton_call);
+        sosButton = root.findViewById(R.id.floatingActionButton_sos);
 
 
         //check if call is granted
@@ -59,6 +61,19 @@ public class CallFragment extends Fragment {
                 Intent i = new Intent(Intent.ACTION_CALL);
                 i.setData(Uri.parse("tel:" + phone));
                 startActivity(i);
+            }
+        });
+
+        sosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+
+                //call emergency services
+                callIntent.setData(Uri.parse("tel:911"));
+
+                //redirect
+                startActivity(callIntent);
             }
         });
 
