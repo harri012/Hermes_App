@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.bottomNav.locate;
+package com.example.hermes_app.ui.comboNavDrawer.home;
 
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import com.example.hermes_app.R;

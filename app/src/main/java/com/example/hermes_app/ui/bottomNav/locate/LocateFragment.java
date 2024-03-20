@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -41,18 +43,9 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
         binding = FragmentLocateBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textLocate;
-        locateViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        Toolbar toolbar = root.findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
-        //locate Button Code -> action done by viewmodel
-        locateButton = root.findViewById(R.id.locate_button);
-
-        locateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                locateViewModel.buttonRedirect(requireContext());
-            }
-        });
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         viewModel = new ViewModelProvider(this).get(LocateViewModel.class);
@@ -65,6 +58,8 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
 
         return root;
     }
+
+
 
 
     @Override

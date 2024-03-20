@@ -1,16 +1,10 @@
 package com.example.hermes_app.ui.bottomNav.locate;
 
-import android.content.Context;
-import android.content.Intent;
-
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.hermes_app.ui.bottomNav.locate.LocateCurrent;
-import com.example.hermes_app.ui.bottomNav.locate.LocationData;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,8 +14,6 @@ public class LocateViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
     private final MutableLiveData<LocationData> locationData;
-    private GoogleMap mMap;
-    private FirebaseFirestore db;
 
     public LocateViewModel() {
         mText = new MutableLiveData<>();
@@ -34,10 +26,6 @@ public class LocateViewModel extends ViewModel {
         return mText;
     }
 
-    public void buttonRedirect(Context context) {
-        Intent intent = new Intent(context, LocateCurrent.class);
-        context.startActivity(intent);
-    }
 
     public LiveData<LocationData> getLocationData() {
         if (locationData.getValue() == null) {
