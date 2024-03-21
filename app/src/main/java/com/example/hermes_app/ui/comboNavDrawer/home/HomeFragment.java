@@ -34,10 +34,9 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
+        /*
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);*/
 
         //CARDS init
         CardView informationCard = root.findViewById(R.id.cardView1);
@@ -99,15 +98,6 @@ public class HomeFragment extends Fragment {
 
                 //redirect
                 startActivity(callIntent);
-            }
-        });
-
-
-        information_button = root.findViewById(R.id.information_button);
-        information_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeViewModel.buttonCurrentLocationRedirect(requireContext());
             }
         });
 

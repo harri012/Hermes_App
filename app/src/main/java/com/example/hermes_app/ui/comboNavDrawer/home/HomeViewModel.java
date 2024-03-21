@@ -30,13 +30,14 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+//        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 
+    //CARD 1
     public void cardInformationRedirect(FragmentManager fragmentManager) {
         // Create an instance of the fragment you want to navigate to
         InformationFragment informationFragment = new InformationFragment();
@@ -54,6 +55,7 @@ public class HomeViewModel extends ViewModel {
         fragmentTransaction.commit();
     }
 
+    //CARD2
     public void cardCallRedirect(FragmentManager fragmentManager) {
         // Create an instance of the fragment you want to navigate to
         CallFragment callFragment = new CallFragment();
@@ -69,11 +71,13 @@ public class HomeViewModel extends ViewModel {
         fragmentTransaction.commit();
     }
 
+    //CARD3
     public void buttonCurrentLocationRedirect(Context context) {
         Intent intent = new Intent(context, LocateCurrent.class);
         context.startActivity(intent);
     }
 
+    //CARD4
     public void cardCaneLocationRedirect(FragmentManager fragmentManager) {
         // Create an instance of the fragment you want to navigate to
         LocateFragment locateFragment = new LocateFragment();
@@ -91,6 +95,7 @@ public class HomeViewModel extends ViewModel {
         fragmentTransaction.commit();
     }
 
+    //CARD 5
     public void cardSettingsRedirect(FragmentManager fragmentManager) {
         // Create an instance of the fragment you want to navigate to
         SettingsFragment settingFragment = new SettingsFragment();
@@ -108,8 +113,4 @@ public class HomeViewModel extends ViewModel {
         fragmentTransaction.commit();
     }
 
-    public void buttonCurrentLocationRedirect(Context context) {
-        Intent intent = new Intent(context, AboutUsActivity.class);
-        context.startActivity(intent);
-    }
 }
