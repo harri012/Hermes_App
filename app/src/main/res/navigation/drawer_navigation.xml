@@ -12,13 +12,13 @@
 
     <fragment
         android:id="@+id/navigation_call"
-        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.call.CallFragment"
         android:label="Locate"
         tools:layout="@layout/fragment_call" />
 
     <fragment
         android:id="@+id/navigation_locate"
-        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.locate.LocateFragment"
         android:label="Locate"
         tools:layout="@layout/fragment_locate" />
 
