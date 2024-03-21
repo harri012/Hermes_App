@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Arrays;
 
 public class SettingsViewModel extends ViewModel {
-    private MutableLiveData<String> textLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> uid = new MutableLiveData<>();
     private MutableLiveData<List<String>> colorPaletteLiveData = new MutableLiveData<>();
     private MediatorLiveData<String> combinedLiveData = new MediatorLiveData<>();
 
@@ -19,20 +19,11 @@ public class SettingsViewModel extends ViewModel {
     public SettingsViewModel() {
 
 
-        textLiveData.setValue("Color Palettes");
-        List<String> colorPaletteNames = Arrays.asList("normal", "protanopia", "deuteranopia", "tritanopia");
-        colorPaletteLiveData.setValue(colorPaletteNames);
-
-
-
     }
+
+
 
     public LiveData<String> getText() {
-        return textLiveData;
+        return uid;
     }
-
-    public LiveData<List<String>> getColorPaletteLiveData() {
-        return colorPaletteLiveData;
-    }
-
 }
