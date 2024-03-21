@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment {
         CardView aboutCard = root.findViewById(R.id.cardView3);
         CardView informationCard = root.findViewById(R.id.cardView4);
 
+
         //CARD 1: current Location Redirect-> action done by viewmodel
         currentLocationCard.setOnClickListener(new View.OnClickListener() {
             @Override
