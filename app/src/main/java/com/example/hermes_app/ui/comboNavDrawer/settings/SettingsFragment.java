@@ -35,6 +35,7 @@ public class SettingsFragment extends Fragment {
     private Button downVolume, upVolume;
     public String uid_saved = null;
 
+    public static final int FLAG_ENABLE_ACCESSIBILITY_VOLUME = 1;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -100,8 +101,8 @@ public class SettingsFragment extends Fragment {
         upVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_RAISE, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
             }
         });
 
@@ -110,15 +111,16 @@ public class SettingsFragment extends Fragment {
         downVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_LOWER, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
+
             }
         });
 
 
         //set the progress to match the device sound
-        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ACCESSIBILITY));
+        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
 
         //seekbar adjustments
         soundBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -126,9 +128,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //seekbar drag will be saved as new volume
-                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                if(progress > 0)
+                    audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_RAISE, 0);
 
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+                else
+                    audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_LOWER, 0);
+
+                audioManager.setStreamVolume(AudioManager.STREAM_ACCESSIBILITY,progress,0);
             }
 
             //particular action
