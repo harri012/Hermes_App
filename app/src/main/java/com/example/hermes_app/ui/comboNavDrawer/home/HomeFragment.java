@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         //CARDS init
-        //CardView informationCard = root.findViewById(R.id.cardView1);
+        CardView informationCard = root.findViewById(R.id.cardView1);
         CardView callCard = root.findViewById(R.id.cardView2);
         CardView currentLocationCard = root.findViewById(R.id.cardView3);
         CardView caneLocationCard = root.findViewById(R.id.cardView4);
@@ -43,6 +43,12 @@ public class HomeFragment extends Fragment {
         CardView emergencyCard = root.findViewById(R.id.cardView6);
 
         //CARD 1: information redirect
+        informationCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.cardInformationRedirect(requireActivity().getSupportFragmentManager());
+            }
+        });
 
         //CARD 2: call fragment redirect
         callCard.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +71,7 @@ public class HomeFragment extends Fragment {
         caneLocationCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeViewModel.cardCaneLocationRedirect(requireContext());
+                homeViewModel.cardCaneLocationRedirect(requireActivity().getSupportFragmentManager());
             }
         });
 
@@ -73,7 +79,7 @@ public class HomeFragment extends Fragment {
         settingsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeViewModel.cardSettingsRedirect(requireContext());
+                homeViewModel.cardSettingsRedirect(requireActivity().getSupportFragmentManager());
             }
         });
 

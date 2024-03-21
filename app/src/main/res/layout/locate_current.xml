@@ -6,9 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.comboNavDrawer.home.LocateCurrent">
 
+
     <fragment
-        android:id="@+id/google_map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+            android:id="@+id/google_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+
 </RelativeLayout>

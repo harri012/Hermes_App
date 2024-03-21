@@ -14,6 +14,9 @@ import com.example.hermes_app.ui.bottomNav.call.CallFragment;
 import com.example.hermes_app.ui.bottomNav.locate.LocateFragment;
 import com.example.hermes_app.ui.bottomNav.locate.LocateViewModel;
 import com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment;
+import com.example.hermes_app.ui.drawer.information.InformationFragment;
+
+import java.util.Set;
 
 public class HomeViewModel extends ViewModel {
 
@@ -28,12 +31,27 @@ public class HomeViewModel extends ViewModel {
         return mText;
     }
 
+    public void cardInformationRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        InformationFragment informationFragment = new InformationFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, informationFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
+    }
+
     public void cardCallRedirect(FragmentManager fragmentManager) {
         // Create an instance of the fragment you want to navigate to
         CallFragment callFragment = new CallFragment();
 
-        // Clear the fragment back stack
-        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         // Begin a fragment transaction
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -50,13 +68,37 @@ public class HomeViewModel extends ViewModel {
         context.startActivity(intent);
     }
 
-    public void cardCaneLocationRedirect(Context context) {
-        Intent intent = new Intent(context, LocateFragment.class);
-        context.startActivity(intent);
+    public void cardCaneLocationRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        LocateFragment locateFragment = new LocateFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, locateFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
     }
 
-    public void cardSettingsRedirect(Context context) {
-        Intent intent = new Intent(context, SettingsFragment.class);
-        context.startActivity(intent);
+    public void cardSettingsRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        SettingsFragment settingFragment = new SettingsFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, settingFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
     }
 }

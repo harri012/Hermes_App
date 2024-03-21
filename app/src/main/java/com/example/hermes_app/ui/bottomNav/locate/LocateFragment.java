@@ -77,9 +77,13 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Set padding to move controls to the top right corner
-        int padding = 100; // Adjust as needed
-        mMap.setPadding(padding, padding, padding, padding);
+        // Padding moves the components
+        int paddingLeft, paddingTop, paddingRight, paddingBottom ;
+        paddingLeft = 0;
+        paddingTop=0;
+        paddingRight=0;
+        paddingBottom=200;
+        mMap.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
 
         viewModel.getLocationData().observe(getViewLifecycleOwner(), locationData -> {
             if (locationData != null) {
