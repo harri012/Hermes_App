@@ -48,7 +48,7 @@
             android:id="@+id/fab_ping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:backgroundTint="@color/deu_beige"
             android:src="@drawable/ic_baseline_network_ping_24"
             android:tint="@color/white"
             app:layout_anchor="@id/navigation_bottomAppBar"
