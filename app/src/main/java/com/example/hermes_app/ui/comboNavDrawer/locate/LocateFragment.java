@@ -34,11 +34,18 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LocateViewModel locateViewModel =
-                new ViewModelProvider(this).get(LocateViewModel.class);
+
+//        LocateViewModel locateViewModel =
+//                new ViewModelProvider(this).get(LocateViewModel.class);
 
         binding = FragmentLocateBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+//
+//        LocateViewModel locateViewModel1 = new LocateViewModel(root.getContext());
+//        locateViewModel1.getLocationData();
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         viewModel = new ViewModelProvider(this).get(LocateViewModel.class);

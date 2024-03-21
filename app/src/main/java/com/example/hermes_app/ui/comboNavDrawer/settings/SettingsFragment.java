@@ -1,5 +1,6 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,7 +33,7 @@ public class SettingsFragment extends Fragment {
     private SeekBar soundBar;
 
     private Button downVolume, upVolume;
-    public String uid_saved;
+    public String uid_saved = null;
 
 
 
@@ -63,7 +64,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 uid_saved = uid.getText().toString();
-                System.out.println(uid_saved);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", root.getContext().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("uid", uid_saved);
+                editor.apply();
 
                 uid.setEnabled(false);
             }
@@ -86,8 +91,9 @@ public class SettingsFragment extends Fragment {
         String uid_text = uid.getText().toString();
         uid.setText(uid_text);
 
-        audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
+        audioManager = (AudioManager) root.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
+
 
 
         upVolume = root.findViewById(R.id.volumeUpButton);
