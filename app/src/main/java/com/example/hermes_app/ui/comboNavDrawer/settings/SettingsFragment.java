@@ -35,12 +35,10 @@ public class SettingsFragment extends Fragment {
     public String uid_saved;
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         SettingsViewModel settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
-
 
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
@@ -64,7 +62,6 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 uid_saved = uid.getText().toString();
                 System.out.println(uid_saved);
-
                 uid.setEnabled(false);
             }
         });
@@ -82,9 +79,13 @@ public class SettingsFragment extends Fragment {
         });
 
 
+
         uid = root.findViewById(R.id.uid);
         String uid_text = uid.getText().toString();
         uid.setText(uid_text);
+
+
+
 
         audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
