@@ -34,9 +34,6 @@ public class SettingsFragment extends Fragment {
     public String uid_saved;
 
 
-    String[] textArray = { "Normal", "Protanopia", "Tritanopia", "Deuteranopia" };
-    Integer[] imageArray = { R.drawable.normal, R.drawable.protanopia,
-            R.drawable.tritanopia, R.drawable.deuteranopia };
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
