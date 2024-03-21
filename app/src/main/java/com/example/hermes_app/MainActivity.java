@@ -2,6 +2,7 @@ package com.example.hermes_app;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -36,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
 
+    public static SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
 
         //fix dex issues
         File dexOutputDir = getCodeCacheDir();
@@ -98,8 +102,12 @@ public class MainActivity extends AppCompatActivity {
     // Method to update boolean flag in Firebase Database
     private void updateFlag(boolean value) {
         // Construct the document reference
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("MyPrefs", this.MODE_PRIVATE);
+        String uid = sharedPreferences.getString("uid", null);
+
         DocumentReference docRef = db.collection("devices")
-                .document("004E00644652500520363830");
+                .document(uid);
 
         // Update the boolean flag
         docRef.update("ping", value)

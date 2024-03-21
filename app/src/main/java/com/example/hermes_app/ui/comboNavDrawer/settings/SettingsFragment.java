@@ -1,5 +1,6 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,11 +37,13 @@ public class SettingsFragment extends Fragment {
     private AudioManager audioManager;
     private SeekBar soundBar;
 
-    private FirebaseAuth authentication;
 
+    public String uid_saved = null;
+    private FirebaseAuth authentication;
 
     private Button downVolume, upVolume, logoutButton;
     public String uid_saved;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -65,6 +68,7 @@ public class SettingsFragment extends Fragment {
         String uid_text = uid.getText().toString();
         uid.setText(uid_text);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", root.getContext().MODE_PRIVATE);
 
         //locate Button Code -> action done by viewmodel
         saveButton = root.findViewById(R.id.save_button);
@@ -73,7 +77,10 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 uid_saved = uid.getText().toString();
-                System.out.println(uid_saved);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("uid", uid_saved);
+                editor.apply();
                 uid.setEnabled(false);
             }
         });
@@ -84,23 +91,24 @@ public class SettingsFragment extends Fragment {
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uid_saved = null;
-                uid.setText(null);
-                System.out.println("UID Removed: " + uid_saved);
+              
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("uid", null);
+                editor.apply();
             }
         });
 
 
+        audioManager = (AudioManager) root.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
-
 
         upVolume = root.findViewById(R.id.volumeUpButton);
         upVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_RAISE, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
             }
         });
 
@@ -109,15 +117,16 @@ public class SettingsFragment extends Fragment {
         downVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_LOWER, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
+
             }
         });
 
 
         //set the progress to match the device sound
-        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ACCESSIBILITY));
+        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
 
         //seekbar adjustments
         soundBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -143,7 +152,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
+        //logout
         authentication = FirebaseAuth.getInstance();
 
         logoutButton = root.findViewById(R.id.logout_button);
@@ -163,7 +172,9 @@ public class SettingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
+  
+  
+    //logout
     public void logout() {
         authentication.signOut();
 
