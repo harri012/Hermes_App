@@ -32,23 +32,6 @@
             </menu>
         </item>
 
-        <item
-            android:title="Account Management">
-            <menu>
-                <item
-                    android:id="@+id/drawer_manage_account"
-                    android:icon="@drawable/ic_baseline_manage_accounts_24"
-                    android:title="@string/manage_account"
-                    android:color="@color/black" android:state_checked="true"/>
-
-                <item
-                    android:id="@+id/drawer_logout"
-                    android:icon="@drawable/ic_baseline_logout_24"
-                    android:title="@string/logout"
-                    android:color="@color/black" android:state_checked="true"/>
-            </menu>
-        </item>
-
     </group>
 
 </menu>

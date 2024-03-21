@@ -1,5 +1,8 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
+
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -21,6 +24,8 @@ import android.widget.Spinner;
 
 import com.example.hermes_app.R;
 import com.example.hermes_app.databinding.FragmentSettingsBinding;
+import com.example.hermes_app.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsFragment extends Fragment {
 
@@ -32,17 +37,19 @@ public class SettingsFragment extends Fragment {
     private AudioManager audioManager;
     private SeekBar soundBar;
 
-    private Button downVolume, upVolume;
-    public String uid_saved = null;
 
-    public static final int FLAG_ENABLE_ACCESSIBILITY_VOLUME = 1;
+    public String uid_saved = null;
+    private FirebaseAuth authentication;
+
+    private Button downVolume, upVolume, logoutButton;
+    public String uid_saved;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         SettingsViewModel settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
-
 
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
@@ -57,6 +64,11 @@ public class SettingsFragment extends Fragment {
 //        SpinnerAdapter adapter = new SpinnerAdapter(root.getContext(), R.layout.spinner_value_layout, textArray, imageArray);
 //        spinner.setAdapter(adapter);
 
+        uid = root.findViewById(R.id.uid);
+        String uid_text = uid.getText().toString();
+        uid.setText(uid_text);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", root.getContext().MODE_PRIVATE);
 
         //locate Button Code -> action done by viewmodel
         saveButton = root.findViewById(R.id.save_button);
@@ -66,11 +78,9 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 uid_saved = uid.getText().toString();
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", root.getContext().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("uid", uid_saved);
                 editor.apply();
-
                 uid.setEnabled(false);
             }
         });
@@ -81,21 +91,17 @@ public class SettingsFragment extends Fragment {
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uid_saved = null;
-                uid.setText(null);
-                System.out.println("UID Removed: " + uid_saved);
+              
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("uid", null);
+                editor.apply();
             }
         });
 
 
-        uid = root.findViewById(R.id.uid);
-        String uid_text = uid.getText().toString();
-        uid.setText(uid_text);
-
         audioManager = (AudioManager) root.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
+        audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
-
-
 
         upVolume = root.findViewById(R.id.volumeUpButton);
         upVolume.setOnClickListener(new View.OnClickListener() {
@@ -128,13 +134,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //seekbar drag will be saved as new volume
-                if(progress > 0)
-                    audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_RAISE, 0);
+                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
 
-                else
-                    audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_LOWER, 0);
-
-                audioManager.setStreamVolume(AudioManager.STREAM_ACCESSIBILITY,progress,0);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
             }
 
             //particular action
@@ -149,9 +151,18 @@ public class SettingsFragment extends Fragment {
 
             }
         });
-        /* final TextView textView = binding.textSettings;
-        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);*/
 
+        //logout
+        authentication = FirebaseAuth.getInstance();
+
+        logoutButton = root.findViewById(R.id.logout_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
 
         return root;
     }
@@ -160,5 +171,21 @@ public class SettingsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+  
+  
+    //logout
+    public void logout() {
+        authentication.signOut();
+
+        // Update "Remember Me" field to false
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("Remember Me", false);
+        editor.apply();
+
+        // Start LoginActivity and finish the current activity
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
     }
 }

@@ -29,6 +29,7 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
     private AppBarConfiguration appBarConfiguration;
 
 
+
     private GoogleMap mMap;
     private LocateViewModel viewModel;
 
