@@ -1,29 +1,36 @@
 package com.example.hermes_app.ui.comboNavDrawer.home;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.core.app.NavUtils;
+
 
 import com.example.hermes_app.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-public class InformationActivity extends AppCompatActivity
-{
+public class InformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_information);
+
+        // Find the toolbar view and set it as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enable the back button on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        // Set title
+        getSupportActionBar().setTitle("User Guidelines");
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        // Handle the back button click
+        NavUtils.navigateUpFromSameTask(this);
+        return true;
     }
 }

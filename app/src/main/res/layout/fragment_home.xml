@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             android:textColor="@color/black"
             android:textSize="40sp"
             app:layout_constraintEnd_toStartOf="@+id/appLogo_home"
@@ -34,17 +35,17 @@
             app:layout_constraintTop_toBottomOf="@id/text_home"
             app:layout_constraintEnd_toStartOf="@+id/appLogo_home"/>
 
+
         <ImageView
             android:id="@+id/appLogo_home"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="100dp"
             android:background="@drawable/hermes_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/text_home"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <LinearLayout
             android:id="@+id/cardView_row1"
@@ -64,8 +65,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                app:cardElevation="20dp"
-                app:cardCornerRadius="20dp">
+                app:cardBackgroundColor="#60b1eb"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -75,19 +77,19 @@
                         android:id="@+id/current_location_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="My Location"
-                        android:textSize="20sp"
-                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/current_location_1_image"
                         android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/current_location_1_image"/>
+                        android:layout_marginTop="10dp"
+                        android:text="My Location"
+                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/current_location_1_image"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ic_baseline_my_location_24"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:layout_centerHorizontal="true"/>
+                        android:src="@drawable/ic_baseline_my_location_24" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -98,7 +100,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                app:cardElevation="20dp"
+                app:cardBackgroundColor="#dd4444"
+                app:cardElevation="5dp"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
@@ -145,7 +148,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                app:cardElevation="20dp"
+                app:cardBackgroundColor="#60b1eb"
+                app:cardElevation="5dp"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
@@ -180,7 +184,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                app:cardElevation="20dp"
+                app:cardBackgroundColor="#60b1eb"
+                app:cardElevation="5dp"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
