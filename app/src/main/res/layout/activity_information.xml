@@ -39,12 +39,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="USER MANUAL"
+                android:text="-USER MANUAL-"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -54,6 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="1. Go to Settings page." />
 
             <TextView
@@ -63,6 +64,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="2. Enter the uid into the specified text field." />
 
             <TextView
@@ -73,6 +75,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="3. Click on save." />
 
             <TextView
@@ -88,7 +91,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textView25"
@@ -97,6 +100,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="1. Navigate to home screen." />
 
             <TextView
@@ -106,6 +110,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="2. Click on the 'Current Location' button." />
 
 
@@ -116,6 +121,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="3. Allow Hermes app to access this device's location while using this app." />
 
             <TextView
@@ -128,10 +134,10 @@
                 android:layout_marginBottom="10dp"
                 android:text="How to Ping Cane"
                 android:textAlignment="center"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -140,7 +146,9 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
-                android:text="1. Click on the ping button located in the middle of the bottom navigation tab."></TextView>
+                android:textColor="@color/black"
+                android:text="1. Click on the ping button located in the middle of the bottom navigation tab." />
+
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="match_parent"
@@ -148,6 +156,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="2. This will ping the cane for a short duration." />
 
             <TextView
@@ -157,6 +166,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="3.  Repeat step 1 for further pinging." />
 
             <TextView
@@ -169,10 +179,10 @@
                 android:layout_marginBottom="10dp"
                 android:text="How to Make Calls from App"
                 android:textAlignment="center"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -181,6 +191,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="1. Click on the call button located in the bottom navigation. ">
 
             </TextView>
@@ -191,6 +202,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="2. Enable calls to be made while using the app." />
 
             <TextView
@@ -200,6 +212,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="3. Enter the phone number in the specified text field." />
 
             <TextView
@@ -209,6 +222,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="4. Click on the call button. ">
 
             </TextView>
@@ -219,6 +233,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="5. In cases of emergency, click on the emergency call button." />
 
 
@@ -245,6 +260,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="1. Ensure that the cane is ON.">
 
             </TextView>
@@ -255,6 +271,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="2. Ensure that the uid associated with your cane is entered correctly in the Settings page." />
 
             <TextView
@@ -264,6 +281,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
                 android:text="3. Ensure that you have access to WIFI or any mobile data connections." />
         </LinearLayout>
     </ScrollView>
