@@ -1,6 +1,7 @@
 package com.example.hermes_app.ui.comboNavDrawer.call;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,6 +33,8 @@ public class CallFragment extends Fragment {
     private FloatingActionButton callButton;
     private FloatingActionButton sosButton;
     static int PERMISSION_CODE=100;
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,22 +53,37 @@ public class CallFragment extends Fragment {
         sosButton = root.findViewById(R.id.floatingActionButton_sos);
 
 
-        //check if call is granted
-        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+        // Check if call permission is granted
+        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // Initialize the ActivityResultLauncher
+            requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (!isGranted) {
+                    // Permission denied, inform the user
+                    Toast.makeText(requireContext(), "Call permission denied. You cannot make calls.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_CODE);
+            // Request call permission
+            requestCallPermission();
         }
 
+        // Set click listener for the call button
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phone = phoneNumber.getText().toString();
-                Intent i = new Intent(Intent.ACTION_CALL);
-                i.setData(Uri.parse("tel:" + phone));
-                startActivity(i);
+                // Check if call permission is granted
+                if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, proceed with making the call
+                    String phone = phoneNumber.getText().toString();
+                    Intent i = new Intent(Intent.ACTION_CALL);
+                    i.setData(Uri.parse("tel:" + phone));
+                    startActivity(i);
+                } else {
+                    // Permission not granted, show the permission dialog
+                    showPermissionDialog();
+                }
             }
         });
-
         sosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,4 +105,25 @@ public class CallFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private void requestCallPermission() {
+        // Launch the permission request
+        requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE);
+    }
+
+    private void showPermissionDialog() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Permission Required")
+                .setMessage("Call permission is required to make calls. Do you want to grant the permission now?")
+                .setPositiveButton("Grant", (dialog, which) -> {
+                    // Request call permission again
+                    requestCallPermission();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // User canceled the permission request
+                    Toast.makeText(requireContext(), "Call permission denied. You cannot make calls.", Toast.LENGTH_SHORT).show();
+                })
+                .show();
+    }
+
 }
