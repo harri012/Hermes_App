@@ -24,20 +24,19 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth authentification;
+    private FirebaseAuth authentication;
     private EditText loginEmail, loginPassword;
     private TextView signupRedirectText;
     private Button loginButton;
     private CheckBox rememberMeCheckbox;
     private SharedPreferences sharedPreferences;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        authentification = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
         sharedPreferences = getSharedPreferences("loginPreferences", MODE_PRIVATE);
 
         loginEmail = findViewById(R.id.login_email);
@@ -46,13 +45,15 @@ public class LoginActivity extends AppCompatActivity {
         signupRedirectText = findViewById(R.id.signupRedirectText);
         rememberMeCheckbox = findViewById(R.id.login_remember_checkbox);
 
-        //checkbox saved (also password?)
-        if (sharedPreferences.getBoolean("Remember Me", false)){
+        // Check if the user is already logged in (based on the "Remember Me" flag)
+        if (sharedPreferences.getBoolean("Remember Me", false)) {
             String savedEmail = sharedPreferences.getString("email", "");
             String savedPassword = sharedPreferences.getString("password", "");
             loginEmail.setText(savedEmail);
             loginPassword.setText(savedPassword);
-            rememberMeCheckbox.setChecked(true);
+
+            // Proceed to main activity without clicking login button
+            autoLogin(savedEmail, savedPassword);
         }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -61,15 +62,13 @@ public class LoginActivity extends AppCompatActivity {
                 String email = loginEmail.getText().toString();
                 String password = loginPassword.getText().toString();
 
-                //look for remember me button checkbox
-                if (rememberMeCheckbox.isChecked()){
+                if (rememberMeCheckbox.isChecked()) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("email", email);
                     editor.putString("password", password);
                     editor.putBoolean("Remember Me", true);
                     editor.apply();
-                }else{
-                    //clear if not checked
+                } else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove("email");
                     editor.remove("password");
@@ -77,40 +76,43 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
                 }
 
-                if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    if(!password.isEmpty()){
-                        authentification.signInWithEmailAndPassword(email, password)
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                        finish();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }else{
-                        loginPassword.setError("Please enter password");
-                    }
-                } else if(email.isEmpty()){
-                    loginEmail.setError("Please enter an email");
-                } else {
-                    loginEmail.setError("Please enter a valid email format");
-                }
+                // Perform login
+                autoLogin(email, password);
             }
         });
 
         signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class ));
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
+    }
 
-
+    private void autoLogin(String email, String password) {
+        if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (!password.isEmpty()) {
+                authentication.signInWithEmailAndPassword(email, password)
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else {
+                loginPassword.setError("Please enter password");
+            }
+        } else if (email.isEmpty()) {
+            loginEmail.setError("Please enter an email");
+        } else {
+            loginEmail.setError("Please enter a valid email format");
+        }
     }
 }

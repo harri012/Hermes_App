@@ -1,8 +1,11 @@
 package com.example.hermes_app.ui.comboNavDrawer.locate;
 
+import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.firestore.DocumentSnapshot;

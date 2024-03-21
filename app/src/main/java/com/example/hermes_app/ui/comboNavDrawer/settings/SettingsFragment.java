@@ -1,5 +1,8 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +23,8 @@ import android.widget.Spinner;
 
 import com.example.hermes_app.R;
 import com.example.hermes_app.databinding.FragmentSettingsBinding;
+import com.example.hermes_app.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsFragment extends Fragment {
 
@@ -31,16 +36,17 @@ public class SettingsFragment extends Fragment {
     private AudioManager audioManager;
     private SeekBar soundBar;
 
-    private Button downVolume, upVolume;
-    public String uid_saved;
+    private FirebaseAuth authentication;
 
+
+    private Button downVolume, upVolume, logoutButton;
+    public String uid_saved;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         SettingsViewModel settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
-
 
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
@@ -55,6 +61,10 @@ public class SettingsFragment extends Fragment {
 //        SpinnerAdapter adapter = new SpinnerAdapter(root.getContext(), R.layout.spinner_value_layout, textArray, imageArray);
 //        spinner.setAdapter(adapter);
 
+        uid = root.findViewById(R.id.uid);
+        String uid_text = uid.getText().toString();
+        uid.setText(uid_text);
+
 
         //locate Button Code -> action done by viewmodel
         saveButton = root.findViewById(R.id.save_button);
@@ -64,7 +74,6 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 uid_saved = uid.getText().toString();
                 System.out.println(uid_saved);
-
                 uid.setEnabled(false);
             }
         });
@@ -81,10 +90,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
-        uid = root.findViewById(R.id.uid);
-        String uid_text = uid.getText().toString();
-        uid.setText(uid_text);
 
         audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
@@ -137,9 +142,18 @@ public class SettingsFragment extends Fragment {
 
             }
         });
-        /* final TextView textView = binding.textSettings;
-        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);*/
 
+
+        authentication = FirebaseAuth.getInstance();
+
+        logoutButton = root.findViewById(R.id.logout_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
 
         return root;
     }
@@ -148,5 +162,19 @@ public class SettingsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void logout() {
+        authentication.signOut();
+
+        // Update "Remember Me" field to false
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("Remember Me", false);
+        editor.apply();
+
+        // Start LoginActivity and finish the current activity
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
     }
 }
