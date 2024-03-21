@@ -1,4 +1,4 @@
-package com.example.hermes_app;
+package com.example.hermes_app.ui.comboNavDrawer.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

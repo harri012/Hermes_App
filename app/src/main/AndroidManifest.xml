@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Hermes_app"
         tools:targetApi="31" >
         <activity
-            android:name=".AboutUsActivity"
+            android:name=".ui.comboNavDrawer.home.AboutUsActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
@@ -68,7 +68,7 @@
                 android:value="" />
         </activity>
 
-        <activity android:name=".InformationActivity" >
+        <activity android:name=".ui.comboNavDrawer.home.InformationActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:parentActivityName=".HomeFragment"

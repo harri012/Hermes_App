@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.bottomNav.locate;
+package com.example.hermes_app.ui.comboNavDrawer.locate;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
