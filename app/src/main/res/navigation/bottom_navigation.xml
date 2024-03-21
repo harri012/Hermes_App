@@ -32,18 +32,4 @@
         tools:layout="@layout/fragment_settings" />
 
 
-    <fragment
-        android:id="@+id/drawer_share"
-        android:name="com.example.hermes_app.ui.drawer.share.ShareFragment"
-        android:label="Share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/drawer_info"
-        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
-        android:label="Information"
-        tools:layout="@layout/fragment_information" />
-
-
-
 </navigation>
