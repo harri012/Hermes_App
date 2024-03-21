@@ -42,9 +42,6 @@ public class SettingsFragment extends Fragment {
     private FirebaseAuth authentication;
 
     private Button downVolume, upVolume, logoutButton;
-    public String uid_saved;
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -91,7 +88,8 @@ public class SettingsFragment extends Fragment {
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              
+
+                uid.setText("");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("uid", null);
                 editor.apply();
