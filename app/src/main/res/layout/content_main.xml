@@ -16,7 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/bottom_navigation" />
+        app:navGraph="@navigation/bottom_navigation"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container"
@@ -48,9 +48,9 @@
             android:id="@+id/fab_ping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/deu_beige"
             android:src="@drawable/ic_baseline_network_ping_24"
-            android:tint="@color/black"
+            android:tint="@color/white"
             app:layout_anchor="@id/navigation_bottomAppBar"
             app:maxImageSize="40dp" />
 
