@@ -9,6 +9,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LocateViewModel extends ViewModel {
 
@@ -32,21 +34,25 @@ public class LocateViewModel extends ViewModel {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             db.collection("devices")
-                    .document("003600124150500920393333")
+                    .document("004E00644652500520363830")
                     .collection("location_data")
-                    .document("0STj1KpG20L7rFspKXbi")
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    .orderBy("timestamp", Query.Direction.DESCENDING) // Order documents by timestamp in descending order
+                    .limit(1) // Limit to the latest document
+                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
-                        public void onEvent(@Nullable DocumentSnapshot snapshot,
+                        public void onEvent(@Nullable QuerySnapshot snapshot,
                                             @Nullable FirebaseFirestoreException e) {
                             if (e != null) {
                                 // Handle error
                                 return;
                             }
 
-                            if (snapshot != null && snapshot.exists()) {
-                                String latitudeString = snapshot.getString("latitude");
-                                String longitudeString = snapshot.getString("longitude");
+                            if (snapshot != null && !snapshot.isEmpty()) {
+                                // Get the latest document from the collection
+                                DocumentSnapshot latestSnapshot = snapshot.getDocuments().get(0);
+
+                                String latitudeString = latestSnapshot.getString("latitude");
+                                String longitudeString = latestSnapshot.getString("longitude");
 
                                 if (latitudeString != null && longitudeString != null) {
                                     double latitude = Double.parseDouble(latitudeString);

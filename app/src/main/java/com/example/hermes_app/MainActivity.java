@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateFlag(boolean value) {
         // Construct the document reference
         DocumentReference docRef = db.collection("devices")
-                .document("000000000000000000000000");
+                .document("004E00644652500520363830");
 
         // Update the boolean flag
         docRef.update("ping", value)
@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                updateFlag(false); // Pass the boolean value you want to update after the delay
+                                updateFlag(false);
                             }
-                        }, 30000); // 30 seconds delay (in milliseconds)
+                        }, 90000); // 30 seconds delay (in milliseconds)
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

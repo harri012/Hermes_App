@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.hermes_app.R;
 import com.example.hermes_app.databinding.FragmentLocateBinding;
@@ -24,13 +25,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.appbar.AppBarLayout;
 
 
 public class LocateFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentLocateBinding binding;
-    Button locateButton;
-    Button databaseLocationButton;
+    private AppBarConfiguration appBarConfiguration;
+
 
     private GoogleMap mMap;
     private LocateViewModel viewModel;
@@ -43,10 +45,6 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
         binding = FragmentLocateBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Toolbar toolbar = root.findViewById(R.id.toolbar);
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         viewModel = new ViewModelProvider(this).get(LocateViewModel.class);
 
@@ -58,8 +56,6 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
 
         return root;
     }
-
-
 
 
     @Override
@@ -81,6 +77,10 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
+        // Set padding to move controls to the top right corner
+        int padding = 100; // Adjust as needed
+        mMap.setPadding(padding, padding, padding, padding);
+
         viewModel.getLocationData().observe(getViewLifecycleOwner(), locationData -> {
             if (locationData != null) {
                 double latitude = locationData.getLatitude();
@@ -99,6 +99,7 @@ public class LocateFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 }
+
 
 
 
