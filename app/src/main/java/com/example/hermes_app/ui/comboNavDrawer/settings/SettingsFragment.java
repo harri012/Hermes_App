@@ -30,6 +30,9 @@ public class SettingsFragment extends Fragment {
     private AudioManager audioManager;
     private SeekBar soundBar;
 
+    private Button downVolume, upVolume;
+    public String uid_saved;
+
 
     String[] textArray = { "Normal", "Protanopia", "Tritanopia", "Deuteranopia" };
     Integer[] imageArray = { R.drawable.normal, R.drawable.protanopia,
@@ -59,7 +62,9 @@ public class SettingsFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settingsViewModel.save(requireContext());
+                uid_saved = uid.getText().toString();
+                System.out.println(uid_saved);
+
                 uid.setEnabled(false);
             }
         });
@@ -70,7 +75,9 @@ public class SettingsFragment extends Fragment {
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settingsViewModel.remove(requireContext());
+                uid_saved = null;
+                uid.setText(null);
+                System.out.println("UID Removed: " + uid_saved);
             }
         });
 
@@ -81,6 +88,28 @@ public class SettingsFragment extends Fragment {
 
         audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
+
+
+        upVolume = root.findViewById(R.id.volumeUpButton);
+        upVolume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+            }
+        });
+
+        //button behaviour when clicking on down
+        downVolume = root.findViewById(R.id.volumeDownButton);
+        downVolume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+            }
+        });
+
+
         //set the progress to match the device sound
         soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
@@ -91,6 +120,8 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //seekbar drag will be saved as new volume
+                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
             }
 
@@ -116,6 +147,4 @@ public class SettingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }

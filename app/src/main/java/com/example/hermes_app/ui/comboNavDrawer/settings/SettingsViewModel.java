@@ -24,16 +24,7 @@ public class SettingsViewModel extends ViewModel {
 
     }
 
-    public void save(Context context){
-        Intent intent = new Intent(context, LocateCurrent.class);
-        context.startActivity(intent);
-    }
 
-
-    public void remove(Context context){
-        Intent intent = new Intent(context, LocateCurrent.class);
-        context.startActivity(intent);
-    }
 
     public LiveData<String> getText() {
         return uid;
