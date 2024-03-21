@@ -1,8 +1,22 @@
 package com.example.hermes_app.ui.comboNavDrawer.home;
 
+import android.content.Context;
+import android.content.Intent;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.hermes_app.R;
+import com.example.hermes_app.ui.bottomNav.call.CallFragment;
+import com.example.hermes_app.ui.bottomNav.locate.LocateFragment;
+import com.example.hermes_app.ui.bottomNav.locate.LocateViewModel;
+import com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment;
+import com.example.hermes_app.ui.drawer.information.InformationFragment;
+
+import java.util.Set;
 
 public class HomeViewModel extends ViewModel {
 
@@ -10,10 +24,81 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Welcome");
     }
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public void cardInformationRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        InformationFragment informationFragment = new InformationFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, informationFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
+    }
+
+    public void cardCallRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        CallFragment callFragment = new CallFragment();
+
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, callFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
+    }
+
+    public void buttonCurrentLocationRedirect(Context context) {
+        Intent intent = new Intent(context, LocateCurrent.class);
+        context.startActivity(intent);
+    }
+
+    public void cardCaneLocationRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        LocateFragment locateFragment = new LocateFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, locateFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
+    }
+
+    public void cardSettingsRedirect(FragmentManager fragmentManager) {
+        // Create an instance of the fragment you want to navigate to
+        SettingsFragment settingFragment = new SettingsFragment();
+
+        // Clear the fragment back stack
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        // Begin a fragment transaction
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.fragment_container, settingFragment);
+
+        // Commit the transaction
+        fragmentTransaction.commit();
     }
 }

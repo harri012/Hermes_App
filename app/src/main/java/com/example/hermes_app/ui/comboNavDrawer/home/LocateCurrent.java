@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.bottomNav.locate;
+package com.example.hermes_app.ui.comboNavDrawer.home;
 
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -32,6 +32,7 @@ public class LocateCurrent extends AppCompatActivity {
 
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

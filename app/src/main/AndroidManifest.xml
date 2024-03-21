@@ -58,13 +58,9 @@
             android:theme="@style/Theme.Hermes_app">
         </activity>
 
-        <activity android:name=".ui.bottomNav.locate.LocateCurrent">
+        <activity android:name=".ui.comboNavDrawer.home.LocateCurrent">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".ui.bottomNav.locate.LocateDatabase">
-            <meta-data
+                android:parentActivityName=".HomeFragment"
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>

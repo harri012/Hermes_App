@@ -10,11 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hermes_app.R;
 import com.example.hermes_app.databinding.FragmentHomeBinding;
+
+import org.w3c.dom.Text;
 
 public class InformationFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private TextView caneUID;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -26,6 +30,11 @@ public class InformationFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         informationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        caneUID = root.findViewById(R.id.caneUIDLinked_textView);
+
+
+
         return root;
     }
 

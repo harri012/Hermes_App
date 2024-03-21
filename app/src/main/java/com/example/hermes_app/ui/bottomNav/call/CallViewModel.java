@@ -10,7 +10,7 @@ public class CallViewModel extends ViewModel {
 
     public CallViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is call fragment");
+        mText.setValue("Dial a Number or Click on the Emergency Services Button");
     }
 
     public LiveData<String> getText() {

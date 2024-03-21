@@ -17,11 +17,6 @@
                 android:title="@string/settings"/>
 
             <item
-                android:id="@+id/drawer_share"
-                android:icon="@drawable/ic_baseline_share_24"
-                android:title="@string/share"/>
-
-            <item
                 android:id="@+id/drawer_info"
                 android:icon="@drawable/ic_baseline_info_24"
                 android:title="@string/information"/>
