@@ -11,16 +11,24 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_call"
+        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:label="Locate"
+        tools:layout="@layout/fragment_call" />
+
+    <fragment
+        android:id="@+id/navigation_locate"
+        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
+        android:label="Locate"
+        tools:layout="@layout/fragment_locate" />
+
+    <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
-    <fragment
-        android:id="@+id/drawer_info"
-        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
-        android:label="Information"
-        tools:layout="@layout/fragment_information" />
+
 
 
 </navigation>

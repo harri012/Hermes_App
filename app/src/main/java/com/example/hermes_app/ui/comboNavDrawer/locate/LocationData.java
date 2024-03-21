@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.bottomNav.locate;
+package com.example.hermes_app.ui.comboNavDrawer.locate;
 
 public class LocationData {
     private double latitude;

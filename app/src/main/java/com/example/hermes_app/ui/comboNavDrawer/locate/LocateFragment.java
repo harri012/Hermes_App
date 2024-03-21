@@ -1,4 +1,4 @@
-package com.example.hermes_app.ui.bottomNav.locate;
+package com.example.hermes_app.ui.comboNavDrawer.locate;
 
 import static android.content.ContentValues.TAG;
 
@@ -7,12 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,7 +21,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.appbar.AppBarLayout;
 
 
 public class LocateFragment extends Fragment implements OnMapReadyCallback {

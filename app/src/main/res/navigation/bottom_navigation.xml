@@ -15,13 +15,13 @@
 
     <fragment
         android:id="@+id/navigation_call"
-        android:name="com.example.hermes_app.ui.bottomNav.call.CallFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.call.CallFragment"
         android:label="@string/title_call"
         tools:layout="@layout/fragment_call" />
 
     <fragment
         android:id="@+id/navigation_locate"
-        android:name="com.example.hermes_app.ui.bottomNav.locate.LocateFragment"
+        android:name="com.example.hermes_app.ui.comboNavDrawer.locate.LocateFragment"
         android:label="@string/title_locate"
         tools:layout="@layout/fragment_locate" />
 
@@ -30,20 +30,6 @@
         android:name="com.example.hermes_app.ui.comboNavDrawer.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
-
-
-    <fragment
-        android:id="@+id/drawer_share"
-        android:name="com.example.hermes_app.ui.drawer.share.ShareFragment"
-        android:label="Share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/drawer_info"
-        android:name="com.example.hermes_app.ui.drawer.information.InformationFragment"
-        android:label="Information"
-        tools:layout="@layout/fragment_information" />
-
 
 
 </navigation>

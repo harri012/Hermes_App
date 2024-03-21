@@ -21,8 +21,7 @@
     <item
         android:id="@+id/navigation_locate"
         android:icon="@drawable/ic_baseline_location_on_24"
-        android:title="@string/title_locate"
-        />
+        android:title="@string/title_locate" />
 
     <item
         android:id="@+id/navigation_settings"

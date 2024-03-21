@@ -15,9 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.widget.Spinner;
-
-import com.example.hermes_app.R;
 import com.example.hermes_app.R;
 import android.widget.Spinner;
 
@@ -49,6 +46,8 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+/*        final TextView textView = binding.textSettings;
+        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);*/
 //        TextView text = (TextView) root.findViewById(R.id.spinnerTextView);
 //        ImageView imageView =(ImageView)root.findViewById(R.id.spinnerImages);
 //        Spinner spinner = (Spinner) root.findViewById(R.id.mySpinner);

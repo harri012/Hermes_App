@@ -4,63 +4,286 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutUsActivity">
+    tools:context=".ui.comboNavDrawer.home.AboutUsActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        tools:ignore="MissingConstraints" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView24"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="201dp"
-        android:text="About Us"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="-Background Information-"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="300dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="The Hermes White CAne was designed by a team of Undergraduate Engineering students from Concordia University. "
-        android:textAlignment="gravity"
+        android:layout_marginBottom="5dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:text="The Hermes White Cane was designed by a team of Undergraduate Engineering students from Concordia University. " />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView18"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:text="Members: Luat, Justin, Harrisson, Suraj, Emily, KunYi, Madison"
-        app:layout_constraintBottom_toTopOf="@+id/textView30"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
+        android:text="The goal of our product is to improve visually impaired population life by providing them technological resources." />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="" />
+
 
     <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView34"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="216dp"
-        android:layout_marginBottom="221dp"
-        android:text="Team 20 of COEN/ELEC 390"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="-Contact Us-"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
+        android:text="Email: support@hermes.com"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Phone: (514) 111-1111"
+            android:drawableLeft="@drawable/ic_baseline_call_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView65"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="" />
+
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="-Team Members-"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="(COEN/ELEC 490 - Team 20) " />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Assouad, Emily"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Goi, Justin"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Nguyen, Luat-Dinh"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Oakes, Madison"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Patel, Suraj "
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Tang, Harrisson"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Wang, Kunyi"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="5dp"/>
+
+        <TextView
+            android:id="@+id/textViesw19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textVie54"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="-Legal-"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="App Version 1.1" />
+
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:text="Hermes Inc." />
+
+    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
