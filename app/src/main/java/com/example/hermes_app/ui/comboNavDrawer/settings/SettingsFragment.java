@@ -33,7 +33,7 @@ public class SettingsFragment extends Fragment {
     private Button saveButton;
     private Button removeButton;
     private EditText uid;
-    private TextView uid_textView;
+    private TextView lastKnown;
     private AudioManager audioManager;
     private SeekBar soundBar;
 
@@ -149,6 +149,15 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+
+        //SWITCH
+        lastKnown = root.findViewById(R.id.lastKnownLocationText);
+        final TextView textView = binding.lastKnownLocationText;
+        settingsViewModel.getLastKnownText().observe(getViewLifecycleOwner(), textView::setText);
+
+
+
+
 
         //logout
         authentication = FirebaseAuth.getInstance();

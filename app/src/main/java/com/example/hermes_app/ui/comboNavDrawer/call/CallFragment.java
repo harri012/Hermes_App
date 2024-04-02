@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,8 +114,8 @@ public class CallFragment extends Fragment {
 
     private void showPermissionDialog() {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Permission Required")
-                .setMessage("Call permission is required to make calls. Do you want to grant the permission now?")
+                .setTitle("Call Permission Required")
+                .setMessage("Call permission is required to make calls. Do you want to grant the permission now? If grant does not work, go to app settigns")
                 .setPositiveButton("Grant", (dialog, which) -> {
                     // Request call permission again
                     requestCallPermission();
@@ -122,6 +123,13 @@ public class CallFragment extends Fragment {
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     // User canceled the permission request
                     Toast.makeText(requireContext(), "Call permission denied. You cannot make calls.", Toast.LENGTH_SHORT).show();
+                })
+                .setNeutralButton("Go to Settings", (dialog, which) -> {
+                    // Open app settings where the user can manually enable the permission
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", requireActivity().getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
                 })
                 .show();
     }
