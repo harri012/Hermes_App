@@ -26,7 +26,18 @@ public class SettingsViewModel extends ViewModel {
         return lastKnownText;
     }
 
-    public LiveData<String> getText() {
-        return uid;
+    public LiveData<String> getText() {return uid;}
+
+
+    private MutableLiveData<Boolean> locationEnabled = new MutableLiveData<>();
+
+    public LiveData<Boolean> getLocationEnabled() {
+        return locationEnabled;
     }
+
+    public void setLocationEnabled(boolean enabled) {
+        locationEnabled.setValue(enabled);
+    }
+
+
 }

@@ -115,7 +115,7 @@ public class CallFragment extends Fragment {
     private void showPermissionDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Call Permission Required")
-                .setMessage("Call permission is required to make calls. Do you want to grant the permission now? If grant does not work, go to app settigns")
+                .setMessage("Call permission is required to make calls. Do you want to grant the permission now? If grant does not work, go to app settings")
                 .setPositiveButton("Grant", (dialog, which) -> {
                     // Request call permission again
                     requestCallPermission();

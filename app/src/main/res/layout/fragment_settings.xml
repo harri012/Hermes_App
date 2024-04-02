@@ -137,7 +137,7 @@
         app:layout_constraintTop_toTopOf="@id/LocateSwitchText" />
 
     <Switch
-        android:id="@+id/LocateSwitch"
+        android:id="@+id/locateSwitch"
         android:layout_width="58dp"
         android:layout_height="38dp"
         android:layout_marginTop="50dp"

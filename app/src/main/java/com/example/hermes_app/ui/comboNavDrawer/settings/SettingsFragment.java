@@ -1,41 +1,55 @@
 package com.example.hermes_app.ui.comboNavDrawer.settings;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hermes_app.R;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.hermes_app.R;
 import com.example.hermes_app.databinding.FragmentSettingsBinding;
 import com.example.hermes_app.login.LoginActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
+    private SettingsViewModel viewModel;
     private Button saveButton;
     private Button removeButton;
     private EditText uid;
     private TextView lastKnown;
     private AudioManager audioManager;
     private SeekBar soundBar;
+    private Switch locateSwitch;
 
 
     public String uid_saved = null;
@@ -155,13 +169,41 @@ public class SettingsFragment extends Fragment {
         final TextView textView = binding.lastKnownLocationText;
         settingsViewModel.getLastKnownText().observe(getViewLifecycleOwner(), textView::setText);
 
+        locateSwitch = root.findViewById(R.id.locateSwitch);
+        viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
 
+        // Restore the state of the switch from SharedPreferences
+        SharedPreferences sharedPreferencesSwitch = requireContext().getSharedPreferences("SwitchState", Context.MODE_PRIVATE);
+        boolean switchState = sharedPreferencesSwitch.getBoolean("locateSwitchState", true); // Default value true
+        locateSwitch.setChecked(switchState);
 
+        // Observe changes in the locationEnabled LiveData
+        viewModel.getLocationEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean enabled) {
+                // Update switch state
+                locateSwitch.setChecked(enabled);
+            }
+        });
+
+        // Set listener for switch changes
+        locateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                viewModel.setLocationEnabled(isChecked);
+                // Update Firebase database here
+                updateFirebaseDatabase(isChecked);
+
+                // Save switch state to SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferencesSwitch.edit();
+                editor.putBoolean("locateSwitchState", isChecked);
+                editor.apply();
+            }
+        });
 
 
         //logout
         authentication = FirebaseAuth.getInstance();
-
         logoutButton = root.findViewById(R.id.logout_button);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -194,5 +236,29 @@ public class SettingsFragment extends Fragment {
         // Start LoginActivity and finish the current activity
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
+    }
+
+    private void updateFirebaseDatabase(boolean enabled) {
+        // Update Firebase database here
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if (uid != null) {
+            String devicePath = "devices/004E00644652500520363830";
+            DocumentReference docRef = FirebaseFirestore.getInstance().document(devicePath);
+            docRef.update("gps", enabled)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Update successful
+                            Toast.makeText(getContext(), "Cane Live Location " + (enabled ? "enabled" : "disabled"), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Handle failure
+                            Toast.makeText(getContext(), "Failed to update Cane Live Location Status", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }
