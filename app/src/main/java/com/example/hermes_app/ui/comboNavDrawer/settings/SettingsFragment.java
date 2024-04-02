@@ -166,8 +166,8 @@ public class SettingsFragment extends Fragment {
 
         //SWITCH
         lastKnown = root.findViewById(R.id.lastKnownLocationText);
-        final TextView textView = binding.lastKnownLocationText;
-        settingsViewModel.getLastKnownText().observe(getViewLifecycleOwner(), textView::setText);
+        //final TextView textView = binding.lastKnownLocationText;
+        settingsViewModel.setLatestTimestampToTextView(lastKnown);
 
         locateSwitch = root.findViewById(R.id.locateSwitch);
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
