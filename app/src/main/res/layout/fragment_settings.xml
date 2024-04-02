@@ -45,6 +45,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:text="Save"
+        android:contentDescription="Save UID"
         android:drawableLeft="@drawable/ic_baseline_save_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uid" />
@@ -57,6 +58,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="45dp"
         android:text="Remove"
+        android:contentDescription="Remove UID"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/save_button"
@@ -84,6 +86,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="General Volume Slider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Volume" />
@@ -96,6 +99,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:text="down"
+        android:contentDescription="Decrease General Volume"
         android:drawableLeft="@drawable/ic_baseline_volume_down_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soundSeekBar" />
@@ -107,6 +111,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:text="up"
+        android:contentDescription="Increase General Volume"
         android:drawableLeft="@drawable/ic_baseline_volume_up_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soundSeekBar" />
@@ -143,6 +148,7 @@
         android:layout_marginTop="50dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
+        android:contentDescription="Live Location Switch"
         app:layout_constraintBottom_toTopOf="@+id/logout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.687"

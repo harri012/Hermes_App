@@ -13,16 +13,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hermes"
+        android:textSize="20dp"
+        android:text="Hermes Cane Application"
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Independance Redefined"
+        android:text="Independence Redefined"
+        android:drawableLeft="@drawable/ic_baseline_assistant_24"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="15dp"
         android:layout_marginBottom="16dp"/>
 
 </LinearLayout>

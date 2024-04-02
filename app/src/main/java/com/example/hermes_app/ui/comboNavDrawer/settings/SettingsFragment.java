@@ -115,30 +115,32 @@ public class SettingsFragment extends Fragment {
         audioManager = (AudioManager) this.getContext().getSystemService(root.getContext().AUDIO_SERVICE);
         soundBar = root.findViewById(R.id.soundSeekBar);
 
+        audioManager = (AudioManager) root.getContext().getSystemService(Context.AUDIO_SERVICE);
+        soundBar = root.findViewById(R.id.soundSeekBar);
+
         upVolume = root.findViewById(R.id.volumeUpButton);
         upVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_RAISE, 0);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
             }
         });
 
-        //button behaviour when clicking on down
         downVolume = root.findViewById(R.id.volumeDownButton);
         downVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioManager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_LOWER, 0);
-                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
-
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
             }
         });
 
 
+
         //set the progress to match the device sound
-        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ACCESSIBILITY));
-        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ACCESSIBILITY));
+        soundBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        soundBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
         //seekbar adjustments
         soundBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
