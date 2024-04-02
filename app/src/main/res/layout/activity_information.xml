@@ -65,7 +65,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
-                android:text="2. Enter the uid into the specified text field." />
+                android:text="2. Enter the valid cane UID into the specified text field." />
 
             <TextView
                 android:id="@+id/textView19"
@@ -79,6 +79,17 @@
                 android:text="3. Click on save." />
 
             <TextView
+                android:id="@+id/textView132"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="4. If a cane needs to be unliked, click on remove button." />
+
+            <TextView
                 android:id="@+id/textView32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +98,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="HOW TO GET CURRENT LOCATION"
+                android:drawableLeft="@drawable/ic_baseline_my_location_24"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -125,6 +137,52 @@
                 android:text="3. Allow Hermes app to access this device's location while using this app." />
 
             <TextView
+                android:id="@+id/textView332"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="HOW TO GET CANE LOCATION"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textView225"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="1. Navigate to settings page." />
+
+            <TextView
+                android:id="@+id/textView215"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="2. Make sure live location switch is enabled." />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="3. Navigate to locate page and navigation settings should be available." />
+
+            <TextView
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,6 +191,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="How to Ping Cane"
+                android:drawableLeft="@drawable/ic_baseline_network_ping_24"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
@@ -170,6 +229,16 @@
                 android:text="3.  Repeat step 1 for further pinging." />
 
             <TextView
+                android:id="@+id/textView326"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="4.  Anytime during the ping, press the ping button another time to cancel ping process." />
+
+            <TextView
                 android:id="@+id/textView37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,6 +247,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="How to Make Calls from App"
+                android:drawableLeft="@drawable/ic_baseline_call_24"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
@@ -247,6 +317,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="Troubleshooting"
+                android:drawableLeft="@drawable/ic_baseline_troubleshoot_24"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -283,6 +354,28 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
                 android:text="3. Ensure that you have access to WIFI or any mobile data connections." />
+
+            <TextView
+                android:id="@+id/textView436"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="4. For PING issues, make sure the cane is connected and valid in settings UID field." />
+
+            <TextView
+                android:id="@+id/textView456"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:text="5. For Call issues, if permission were initially denied, go to the settings permission to grant calls" />
+
+
         </LinearLayout>
     </ScrollView>
 

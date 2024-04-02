@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         pingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateFlag(true);
+                togglePing();
             }
         });
 
@@ -100,10 +100,14 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
-    // Method to update boolean flag in Firebase Database
-    private void updateFlag(boolean value) {
-        // Construct the document reference
+    // Declare a boolean flag at the class level
+    private boolean isPinging = false;
+    // Declare a Handler at the class level
+    private Handler pingHandler = new Handler();
 
+    // Method to toggle the ping feature
+    private void togglePing() {
+        // Construct the document reference
         SharedPreferences sharedPreferences = this.getSharedPreferences("MyPrefs", this.MODE_PRIVATE);
         String uid = sharedPreferences.getString("uid", null);
 
@@ -111,25 +115,34 @@ public class MainActivity extends AppCompatActivity {
             DocumentReference docRef = db.collection("devices")
                     .document(uid);
 
-            // Update the boolean flag
-            docRef.update("ping", value)
+            // Update the boolean flag to its opposite value
+            isPinging = !isPinging;
+
+            // Update the boolean flag in Firebase
+            docRef.update("ping", isPinging)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            boolean flag = true; // Set the flag to true
                             Log.d(TAG, "Boolean flag updated successfully!");
 
-                            // Display a toast indicating success
-                            Toast.makeText(getApplicationContext(), "Pinging!", Toast.LENGTH_SHORT).show();
-
-                            // Revert the flag back to false after 30 seconds
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    updateFlag(false);
-                                }
-                            }, 90000); // 30 seconds delay (in milliseconds)
+                            // Display a toast indicating the current state
+                            if (isPinging) {
+                                Toast.makeText(getApplicationContext(), "Pinging starting!", Toast.LENGTH_SHORT).show();
+                                // Start a delayed runnable to cancel ping after 90 seconds
+                                pingHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Cancel the ping operation after 90 seconds
+                                        togglePing();
+                                        // Alert the user that 90 seconds are up
+                                        Toast.makeText(getApplicationContext(), "Ping stopped after 90 seconds!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }, 90000); // 90 seconds delay (in milliseconds)
+                            } else {
+                                // Remove any pending callbacks when ping is canceled
+                                pingHandler.removeCallbacksAndMessages(null);
+                                Toast.makeText(getApplicationContext(), "Ping canceled!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -141,8 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     });
         } else {
             Log.e(TAG, "UID is null, cannot construct document reference.");
-            Toast.makeText(getApplicationContext(), "UID is null, unable to ping", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "UID is null, unable to ping. Go to settings and enter cane UID.", Toast.LENGTH_SHORT).show();
         }
     }
 }
-
