@@ -143,6 +143,7 @@
         android:layout_marginTop="50dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
+        android:contentDescription="Live Location Switch"
         app:layout_constraintBottom_toTopOf="@+id/logout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.687"
